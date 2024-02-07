@@ -1,0 +1,127 @@
+.dock li {
+  transition: width 0.25s ease;
+}
+.dock li img {
+  transform-origin: 50% 100%;
+  transition: all 0.25s ease;
+}
+
+/* The hovered li */
+.dock li:hover {
+  width: 3em;
+}
+.dock li:hover img {
+  translate: 0% -15%;
+}
+
+/* The element before and after the hovered li */
+.dock li:hover + li,
+.dock li:has(+ li:hover) {
+  width: 2.5em;
+}
+
+:is(.dock li:hover + li, .dock li:has(+ li:hover)) img {
+  translate: 0% -5%;
+}
+
+@layer reset {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul[class] {
+    list-style: none;
+  }
+}
+
+@layer baselayout {
+  html {
+    font-size: clamp(16px, 4vw, 48px);
+    background: transparent
+      linear-gradient(to bottom right, #ff00fa 0%, #0ff 100%);
+    height: 100%;
+    font-family: "Syne", sans-serif;
+  }
+
+  footer {
+    font-size: 0.5em;
+    text-align: center;
+    color: white;
+    padding: 0.25rem;
+  }
+
+  a {
+    color: #6300ff;
+  }
+}
+
+@layer components {
+  @layer dock {
+    .dock-wrapper {
+      width: auto;
+      height: auto;
+
+      position: absolute;
+      bottom: 1em;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .dock {
+      width: auto;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 1em;
+      background: rgb(83 83 83 / 0.25);
+      backdrop-filter: blur(1em);
+      border: 0.05em solid rgb(255 255 255 / 0.18);
+      gap: 0.5em;
+      padding: 0.5em;
+    }
+
+    .dock li {
+      width: 2em;
+      height: 2em;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+
+      position: relative;
+    }
+
+    .dock li[data-separator] {
+      padding-left: 0.5em;
+    }
+
+    .dock li[data-separator]::before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 0.05em;
+      left: 0;
+      background: rgb(255 255 255 / 0.4);
+    }
+
+    .dock li img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+
+      background: white;
+      border-radius: 0.4em;
+      border: 0.05em solid;
+      overflow: clip;
+      object-fit: contain;
+      object-position: 50% 100%;
+
+      cursor: pointer;
+    }
+  }
+}
