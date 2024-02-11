@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Honk&display=swap');
+
+.honk-welcome {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
+
+  /* My formatting */
+  font-size: 3.5rem;
+  padding: 20px;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+/* <welcome-text>: Use a uniquifier for the class name */
+/* <500>: Use a value from 100 to 900  */
+
+.chivo-mono-welcome-text {
+  font-family: "Chivo Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+#demo {
+  position: fixed;
+  font-size: 1.25em;
+  width: 90vw;
+  top: 51%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+  font-family: "Chivo Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  --chars: 144;
+}
+
+.intro {
+  background:
+    /* base color */
+    #ffffff
+    /* highlight gradient */
+    /* from : ffffb2 to: ff41af */
+    linear-gradient(to right, #6300ff 0%, #e915c7 100%) 0 / 0 no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: text steps(var(--chars)) forwards;
+  animation-timeline: scroll(root);
+}
+
+body {
+  height: 400dvh;
+}
+
+@keyframes text {
+  0% {
+    background-size: 0ch;
+  }
+
+  100% {
+    background-size: calc(var(--chars) * 1em);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: clamp(16px, 2vmax + 1em, 42px);
+}
+
+footer {
+  position: fixed;
+  bottom: 1em;
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  font-family: Syne;
+  font-size: 0.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+html {
+  --scrollbar-thumb-color: #e915c7;
+  --scrollbar-track-color: #eee;
+  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
+
+@supports not (scrollbar-color: red blue) {
+  html::-webkit-scrollbar {
+    width: 1em;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+  }
+
+  html::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+  }
+}
